@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mad_deutch_quiz/answer.dart';
 import 'question.dart';
+import 'answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
       index = index + 1;
     });
@@ -34,10 +36,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(children: [
           Question(questions[index]),
-          ElevatedButton(onPressed: answerQuestion, child: Text('Answer 1')),
-          ElevatedButton(
-              onPressed: () => print('answer 2 chosen'),
-              child: Text('Answer 2')),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
           ElevatedButton(onPressed: null, child: Text('Answer 3')),
         ]),
       ),
