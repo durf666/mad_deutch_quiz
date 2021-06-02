@@ -24,10 +24,22 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s your favourite color?',
-      'What\'s your favourite animal?',
-      'What\'s your favourite color?',
-      'What\'s your favourite food?',
+      {
+        'questionText': 'What\'s your favourite class?',
+        'answers': [' wizard', 'bard', 'paladin']
+      },
+      {
+        'questionText': 'What\'s your favourite dregon?',
+        'answers': [' red', 'black', 'green']
+      },
+      {
+        'questionText': 'What\'s your favourite spell?',
+        'answers': [' fireball', 'fireball', 'fireball']
+      },
+      {
+        'questionText': 'What\'s your favourite summon?',
+        'answers': [' badger', 'lemure', 'archon']
+      },
     ];
     return MaterialApp(
       home: Scaffold(
@@ -35,10 +47,13 @@ class _MyAppState extends State<MyApp> {
           title: Text('My App'),
         ),
         body: Column(children: [
-          Question(questions[index]),
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
+          Question(questions[index]['questionText']),
+          ...(questions[index]['answers'] as List<String>)
+              .map((answer) => Answer(_answerQuestion, answer))
+              .toList(),
+          // Answer(_answerQuestion, questions[index]['answers'][1]),
+          // Answer(_answerQuestion),
+          // Answer(_answerQuestion),
           ElevatedButton(onPressed: null, child: Text('Answer 3')),
         ]),
       ),
