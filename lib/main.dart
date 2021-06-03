@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    final questions = [
       {
         'questionText': 'What\'s your favourite class?',
         'answers': [' wizard', 'bard', 'paladin']
@@ -41,21 +41,27 @@ class _MyAppState extends State<MyApp> {
         'answers': [' badger', 'lemure', 'archon']
       },
     ];
+    if (index < questions.length) {
+    } else {}
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('My App'),
         ),
-        body: Column(children: [
-          Question(questions[index]['questionText']),
-          ...(questions[index]['answers'] as List<String>)
-              .map((answer) => Answer(_answerQuestion, answer))
-              .toList(),
-          // Answer(_answerQuestion, questions[index]['answers'][1]),
-          // Answer(_answerQuestion),
-          // Answer(_answerQuestion),
-          ElevatedButton(onPressed: null, child: Text('Answer 3')),
-        ]),
+        body: index < questions.length
+            ? Column(children: [
+                Question(questions[index]['questionText']),
+                ...(questions[index]['answers'] as List<String>)
+                    .map((answer) => Answer(_answerQuestion, answer))
+                    .toList(),
+                // Answer(_answerQuestion, questions[index]['answers'][1]),
+                // Answer(_answerQuestion),
+                // Answer(_answerQuestion),
+                ElevatedButton(onPressed: null, child: Text('Answer 3')),
+              ])
+            : Center(
+                child: Text('You did it!!!'),
+              ),
       ),
     );
   }
